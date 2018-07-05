@@ -3,19 +3,15 @@ from subprocess import call #la necesitamos para la interrupcion de teclado
 import RPi.GPIO as GPIO
 
 
-def setup():
+def setup(Trig,Echo):
     GPIO.setmode(GPIO.BOARD) #Queremos usar la numeracion de la placa
-
-    #Definimos los dos pines del sensor que hemos conectado: Trigger y Echo
-    Trig = 11
-    Echo = 13
 
     #Hay que configurar ambos pines del HC-SR04
     GPIO.setup(Trig, GPIO.OUT)
     GPIO.setup(Echo, GPIO.IN)
 
 #Para leer la distancia del sensor al objeto, creamos una funcion
-def detectarObstaculo(Trig=11,Echo=13):
+def detectarObstaculo(Trig,Echo):
 
    GPIO.output(Trig, False) #apagamos el pin Trig
    time.sleep(2*10**-6) #esperamos dos microsegundos
@@ -51,9 +47,12 @@ def destroy():
 
 #Bucle principal del programa, lee el sensor. Se sale con CTRL+C
 if __name__ == '__main__':
-    setup()
+    #Definimos los dos pines del sensor que hemos conectado: Trigger y Echo
+    Trig = 11
+    Echo = 13
+    setup(Trig, Echo)
     while True:
         try:
-            detectarObstaculo()
+            detectarObstaculo(Trig,Echo)
         except KeyboardInterrupt:
-            detroy()
+            destroy(Trig,Echo)
