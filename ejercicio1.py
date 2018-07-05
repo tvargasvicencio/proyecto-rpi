@@ -6,16 +6,30 @@ GPIO.setwarnings(False)
 #set the gpio modes to board numbering
 GPIO.setmode(GPIO.BOARD)
 
-LEDPIN = 7
-Trig = 11
-Echo = 13
+LEDS = {
+    "led1": 7,
+    "led2": 12
+}
+US = {
+    "us1":{
+        "Trig": 11,
+        "Echo": 13
+    },
+    "us2":{
+        "Trig": 16,
+        "Echo": 18
+    }
+}
 
-led.setup(LEDPIN)
-distancia.setup(Trig,Echo)
+led.setup(LEDS.led1)
+led.setup(LEDS.led2)
+distancia.setup(US.us1.Trig,US.us1.Echo)
+distancia.setup(US.us2.Trig,US.us2.Echo)
 
 if __name__ == '__main__':
     try:
-        main(LEDPIN)
+        led.main(LEDPIN)
     except KeyboardInterrupt:
         print('LED OFF...\n')
-        distancia.destroy(LEDPIN)
+        GPIO.output(LEDPIN,GPIO.LOW)
+        led.destroy(LEDPIN)

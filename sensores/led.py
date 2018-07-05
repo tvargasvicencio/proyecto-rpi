@@ -10,15 +10,21 @@ def setup(LEDPIN):
     #set LEDPIN's mode to output,and initial level to LOW(0V)
     GPIO.setup(LEDPIN,GPIO.OUT,initial=GPIO.LOW)
 
+def encender(LEDPIN):
+    GPIO.output(LEDPIN,GPIO.HIGH)
+
+def apagar(LEDPIN):
+    GPIO.output(LEDPIN,GPIO.LOW)
+
 #main function
 def main(LEDPIN):
     #print info
     while True:
-       GPIO.output(LEDPIN,GPIO.HIGH)
+       encender(LEDPIN)
        print('...LED ON\n')
        time.sleep(0.5)
 
-       GPIO.output(LEDPIN,GPIO.LOW)
+       apagar(LEDPIN)
        print('LED OFF...\n')
        time.sleep(0.5)
        pass
