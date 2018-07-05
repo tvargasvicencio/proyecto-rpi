@@ -32,5 +32,5 @@ if __name__ == '__main__':
         print('LEDS OFF...\n')
         GPIO.output(sensores[0]["led"],GPIO.LOW)
         GPIO.output(sensores[1]["led"],GPIO.LOW)
-	    led.destroy(sensores[0]["led"])
+        led.destroy(sensores[0]["led"])
         led.destroy(sensores[1]["led"])
