@@ -33,11 +33,10 @@ def detectarObstaculo(Trig,Echo):
    #Este tiempo viene dado en segundos. Si lo pasamos
    #a microsegundos, podemos aplicar directamente las formulas
    #de la documentacion
-   duracion = duracion*10**6
-   medida = duracion/58 #hay que dividir por la constante que pone en la documentacion, nos dara la distancia en cm
-   if medida <=5:
-      print "%.2f" %medida #por ultimo, vamos a mostrar el resultado por pantalla
-      time.sleep(0.5)
+   duracion_micro = duracion*10**6
+   medida = duracion_micro/58 #hay que dividir por la constante que pone en la documentacion, nos dara la distancia en cm
+   
+    return {"duracion":duracion,"medida":medida}
 
 def destroy(Trig,Echo):
     #por ultimo hay que restablecer los pines GPIO
@@ -54,6 +53,9 @@ if __name__ == '__main__':
     setup(Trig, Echo)
     while True:
         try:
-            detectarObstaculo(Trig,Echo)
+            resultado = detectarObstaculo(Trig,Echo)
+            if resultado["medida"] <=5:
+                print "%.2f" %resultado["medida"] #por ultimo, vamos a mostrar el resultado por pantalla
+                time.sleep(0.5)
         except KeyboardInterrupt:
             destroy(Trig,Echo)
