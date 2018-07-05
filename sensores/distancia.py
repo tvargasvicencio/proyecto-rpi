@@ -43,7 +43,6 @@ def destroy(Trig,Echo):
     #por ultimo hay que restablecer los pines GPIO
     print "Limpiando..."
     GPIO.output(Trig,GPIO.LOW)
-    GPIO.output(Echo,GPIO.LOW)
     GPIO.cleanup()
     print "Acabado."
 
