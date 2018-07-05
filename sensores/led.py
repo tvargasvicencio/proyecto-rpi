@@ -1,12 +1,9 @@
 import RPi.GPIO as GPIO
 import time
 
-# set GPIO 0 as LED pin
-LEDPIN = 7
-
 
 #setup function for some setup---custom function
-def setup():
+def setup(LEDPIN):
     GPIO.setwarnings(False)
     #set the gpio modes to board numbering
     GPIO.setmode(GPIO.BOARD)
@@ -14,9 +11,8 @@ def setup():
     GPIO.setup(LEDPIN,GPIO.OUT,initial=GPIO.LOW)
 
 #main function
-def main():
+def main(LEDPIN):
     #print info
-    print_message()
     while True:
        GPIO.output(LEDPIN,GPIO.HIGH)
        print('...LED ON\n')
@@ -29,7 +25,7 @@ def main():
     pass
 
 #define a destroy function for clean up everything after the script finished
-def destroy():
+def destroy(LEDPIN):
     #turn off LED
     GPIO.output(LEDPIN,GPIO.LOW)
     #release resource
@@ -37,11 +33,13 @@ def destroy():
 #
 # if run this script directly ,do:
 if __name__ == '__main__':
-    setup()
+    # set GPIO 0 as LED pin
+    LEDPIN = 7
+    setup(LEDPIN)
     try:
-        main()
+        main(LEDPIN)
     #when 'Ctrl+C' is pressed,child program destroy() will be executed.
     except KeyboardInterrupt:
         GPIO.output(LEDPIN,GPIO.LOW)
         print('LED OFF...\n')
-        destroy()
+        destroy(LEDPIN)
