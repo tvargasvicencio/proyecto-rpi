@@ -28,8 +28,9 @@ distancia.setup(US.us2.Trig,US.us2.Echo)
 
 if __name__ == '__main__':
     try:
-        led.main(LEDPIN)
+        led.main(LEDS.led2)
     except KeyboardInterrupt:
         print('LED OFF...\n')
-        GPIO.output(LEDPIN,GPIO.LOW)
-        led.destroy(LEDPIN)
+        GPIO.output(LEDS.led1,GPIO.LOW)
+        GPIO.output(LEDS.led2,GPIO.LOW)
+        led.destroy(LEDS.led2)
