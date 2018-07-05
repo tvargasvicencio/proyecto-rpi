@@ -39,7 +39,7 @@ def detectarObstaculo(Trig,Echo):
       print "%.2f" %medida #por ultimo, vamos a mostrar el resultado por pantalla
       time.sleep(0.5)
 
-def destroy():
+def destroy(Trig,Echo):
     #por ultimo hay que restablecer los pines GPIO
     print "Limpiando..."
     GPIO.cleanup()
