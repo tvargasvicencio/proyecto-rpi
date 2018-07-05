@@ -34,7 +34,7 @@ def detectarObstaculo(Trig,Echo):
     #de la documentacion
     duracion_micro = duracion*10**6
     medida = duracion_micro/58 #hay que dividir por la constante que pone en la documentacion, nos dara la distancia en cm
-    return {"duracion":duracion,"medida":medida}
+    return {"medida":medida}
 
 def destroy(Trig,Echo):
     #por ultimo hay que restablecer los pines GPIO

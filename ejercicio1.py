@@ -33,17 +33,19 @@ def prenderSensor(sensor):
 if __name__ == '__main__':
     try:
         while True:
-            sensor = sensores[random.randint(0,1)]
+            sensor = sensores[randint(0,1)]
+            start_time = time.time()
             led.encender(sensor["led"])
             midiendo = True
             while midiendo:
                 resultado = distancia.detectarObstaculo(sensor["Trig"],sensor["Echo"])
                 if resultado["medida"] <=5:
-                    print "duracion: %.2f" %resultado["duracion"]
+                    elapsed_time = time.time() - start_time
+                    print "tiempo de reaccion: %" %elapsed_time
                     print "%.2f" %resultado["medida"] #por ultimo, vamos a mostrar el resultado por pantalla
                     led.apagar(sensor["led"])
                     midiendo = False
-                    time.sleep(random.randint(0,5))
+                    time.sleep(randint(0,5))
     except KeyboardInterrupt:
         print('LEDS OFF...\n')
         GPIO.output(sensores[0]["led"],GPIO.LOW)
