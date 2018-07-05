@@ -2,9 +2,9 @@ import time #se necesita para usar las funciones de tiempo
 from subprocess import call #la necesitamos para la interrupcion de teclado
 import RPi.GPIO as GPIO
 
+GPIO.setmode(GPIO.BOARD) #Queremos usar la numeracion de la placa
 
 def setup(Trig,Echo):
-    GPIO.setmode(GPIO.BOARD) #Queremos usar la numeracion de la placa
 
     #Hay que configurar ambos pines del HC-SR04
     GPIO.setup(Trig, GPIO.OUT)
@@ -42,6 +42,8 @@ def detectarObstaculo(Trig,Echo):
 def destroy(Trig,Echo):
     #por ultimo hay que restablecer los pines GPIO
     print "Limpiando..."
+    GPIO.output(Trig,GPIO.LOW)
+    GPIO.output(Echo,GPIO.LOW)
     GPIO.cleanup()
     print "Acabado."
 
