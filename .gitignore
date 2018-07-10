@@ -1,1 +1,3 @@
 *.pyc
+db.*
+proyectoRPi/settings.json
