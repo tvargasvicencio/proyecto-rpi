@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from sensores import distancia, led
+from utils import distancia, led
 from random import randint
 
 GPIO.setwarnings(False)
@@ -26,9 +26,6 @@ led.setup(sensores[1]["led"])
 distancia.setup(sensores[0]["Trig"],sensores[0]["Echo"])
 distancia.setup(sensores[1]["Trig"],sensores[1]["Echo"])
 
-def prenderSensor(sensor):
-    led.encender(sensor["led"])
-    distancia.detectarObstaculo(sensor["Trig"],sensor["Echo"])
 
 if __name__ == '__main__':
     try:
