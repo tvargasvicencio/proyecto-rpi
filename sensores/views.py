@@ -6,6 +6,7 @@ from django.http import HttpResponse
 
 import RPi.GPIO as GPIO
 from utils import temhum
+import json
 
 def temperatura_humedad(request):
     dato = temhum.read_dht11_dat(8) # conectado a BOARD 8
@@ -15,7 +16,7 @@ def temperatura_humedad(request):
         intentos += 1
     json_response = {
         "temperatura":dato["temperatura"],
-        "humedad":dato["humedad"]
+        "humedad":dato["humedad"],
         "intentos":intentos,
     }
     return HttpResponse(json.dumps(json_response), content_type="application/json")
