@@ -19,4 +19,5 @@ def temperatura_humedad(request):
         "humedad":dato["humedad"],
         "intentos":intentos,
     }
+    GPIO.cleanup() # cleanup all GPIO
     return HttpResponse(json.dumps(json_response), content_type="application/json")
