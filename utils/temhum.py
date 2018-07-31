@@ -15,6 +15,7 @@ STATE_DATA_PULL_UP = 4
 STATE_DATA_PULL_DOWN = 5
 
 def read_dht11_dat(DHTPIN = 8):
+    GPIO.setmode(GPIO.BOARD)
     GPIO.setup(DHTPIN, GPIO.OUT)
     GPIO.output(DHTPIN, GPIO.HIGH)
     time.sleep(0.05)
@@ -113,7 +114,7 @@ def main():
     while True:
         result = read_dht11_dat()
         if result:
-            print "humidity: %s %%,  Temperature: %s C" % (result["humedad"], result["temperatur"])
+            print "humidity: %s %%,  Temperature: %s C" % (result["humedad"], result["temperatura"])
         time.sleep(1)
 
 def destroy():
