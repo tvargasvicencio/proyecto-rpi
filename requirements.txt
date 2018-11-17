@@ -2,3 +2,5 @@ cx-Freeze==5.1.1
 Django==1.11.14
 pytz==2018.5
 RPi.GPIO==0.6.3
+channels==1.1.8
+asgi_redis
