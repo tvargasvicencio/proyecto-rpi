@@ -46,7 +46,18 @@ INSTALLED_APPS = [
     'proyectoRPi',
     'led',
     'sensores',
+    'channels',
 ]
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('0.0.0.0', 6379)],
+        },
+        'ROUTING': 'proyectoRPi.routing.channel_routing',
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
