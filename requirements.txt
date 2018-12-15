@@ -4,3 +4,4 @@ pytz==2018.5
 RPi.GPIO==0.6.3
 channels==1.1.8
 asgi_redis
+mpu6050-raspberrypi

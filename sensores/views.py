@@ -22,8 +22,12 @@ def temperatura_humedad(request):
     GPIO.cleanup() # cleanup all GPIO
     return HttpResponse(json.dumps(json_response), content_type="application/json")
 
-def encender_led(request):
-    led.encender(request.pk)
+def encender_led(request,ledpin):
+    led.setup(int(ledpin))
+    led.encender(int(ledpin))
+    return HttpResponse(json.dumps({"result":True}), content_type="application/json")
 
-def apagar_led(request):
-    led.apagar(request.pk)
+def apagar_led(request,ledpin):
+    led.setup(int(ledpin))
+    led.apagar(int(ledpin))
+    return HttpResponse(json.dumps({"result":True}), content_type="application/json")

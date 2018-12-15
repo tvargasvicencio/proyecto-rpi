@@ -1,12 +1,11 @@
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setwarnings(False)
-#set the gpio modes to board numbering
-GPIO.setmode(GPIO.BOARD)
-
 #setup function for some setup---custom function
 def setup(LEDPIN):
+    GPIO.setwarnings(False)
+    #set the gpio modes to board numbering
+    GPIO.setmode(GPIO.BOARD)
     #set LEDPIN's mode to output,and initial level to LOW(0V)
     GPIO.setup(LEDPIN,GPIO.OUT,initial=GPIO.LOW)
 
@@ -40,7 +39,7 @@ def destroy(LEDPIN):
 # if run this script directly ,do:
 if __name__ == '__main__':
     # set GPIO 0 as LED pin
-    LEDPIN = 7
+    LEDPIN = 40
     setup(LEDPIN)
     try:
         main(LEDPIN)
