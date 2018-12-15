@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 # set BCM_GPIO 17(GPIO 0) as PIR pin
-PIRPin = 5
+PIRPin = 11
 
 #print message at the begining ---custom function
 def print_message():
@@ -12,8 +12,8 @@ def print_message():
 #setup function for some setup---custom function
 def setup():
     GPIO.setwarnings(False)
-    #set the gpio modes to BCM numbering
-    GPIO.setmode(GPIO.BCM)
+    #set the gpio modes to BOARD numbering
+    GPIO.setmode(GPIO.BOARD)
     GPIO.setup(PIRPin,GPIO.IN)
 
 #main function
