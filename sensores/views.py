@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 import RPi.GPIO as GPIO
-from utils import temhum
+from utils import temhum, led
 import json
 
 def temperatura_humedad(request):
@@ -21,3 +21,9 @@ def temperatura_humedad(request):
     }
     GPIO.cleanup() # cleanup all GPIO
     return HttpResponse(json.dumps(json_response), content_type="application/json")
+
+def encender_led(request):
+    led.encender(request.pk)
+
+def apagar_led(request):
+    led.apagar(request.pk)
